@@ -1,0 +1,15 @@
+*{
+  padding: 10px;
+}
+
+section {
+  display: flex;
+}
+
+section + div{
+  display: flex;
+}
+
+section div span{
+  height: auto;
+}
