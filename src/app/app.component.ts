@@ -10,13 +10,13 @@ import 'rxjs/Rx';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   scriptName = '';
   scriptDetail; string;
   scripts;
   scriptsLatest = new Subject<string>();
   resetObser = new Observable;
-  inputCount:number = 10;
+  inputCount = 10;
 
   constructor(public http: Http) {
     this.scripts = this.scriptsLatest
@@ -25,14 +25,13 @@ export class AppComponent implements OnInit{
     .filter(scriptName => !!scriptName)
     .retry(3)
     .switchMap(
-      scriptName => this.http.get(`http://www.nasdaq.com/aspx/symbolnamesearch.aspx?q=+${scriptName}`,{})
+      scriptName => this.http.get(`http://www.nasdaq.com/aspx/symbolnamesearch.aspx?q=+${scriptName}`, {})
       .map( res => res.text().split('\n'))
     ).distinctUntilChanged()
     .filter(res => true);
-     
   }
-  ngOnInit(){
-   Observable.fromEvent(document.getElementById("reset-button"), 'click')
+  ngOnInit() {
+   Observable.fromEvent(document.getElementById('reset-button'), 'click')
    .debounceTime(500)
    .subscribe(event => {
      this.scriptName = '';
