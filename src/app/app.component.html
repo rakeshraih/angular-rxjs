@@ -4,12 +4,17 @@
 
 <section>
   <md-input-container>
-    <input mdInput placeholder="Nasdaq Script Search" value="{{scriptName}}" [(ngModel)]="scriptName" (ngModelChange)="changeInScriptName(scriptName)"/>
+    <input list="browsers" mdInput placeholder="Nasdaq Script Search" value="{{scriptName}}" [(ngModel)]="scriptName" (ngModelChange)="changeInScriptName(scriptName)"/>
   </md-input-container>
   <button id="reset-button" md-button>Reset</button>
   Max input {{inputCount}}
   
 </section>
+
+<datalist id="browsers" *ngFor="let script of scripts | async">
+  <option value="{{script}}">
+</datalist>
+
 <div *ngFor="let script of scripts | async">
   {{script}}
 </div>

@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
      console.log('clicked');
     });
 
-    Observable.fromEvent(document.querySelector("input"), 'input')
+    Observable.fromEvent(document.querySelector('input'), 'input')
     // .debounceTime(500)
     .subscribe(event => {
       this.inputCount = this.inputCount - this.scriptName.length;
